@@ -13,55 +13,47 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Color Generator Get App'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Obx(() {
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 18.0),
-                decoration: BoxDecoration(
-                    color: controller.color,
-                    boxShadow: [
-                      BoxShadow(
-                          offset: Offset(6, 6),
-                          color: Colors.black26,
-                          blurRadius: 6.0)
-                    ],
-                    borderRadius: BorderRadius.circular(12)),
-                width: double.infinity,
-                height: 200,
-              );
-            }),
-            ObxValue((r) {
-              return Slider(
-                  min: 0.0,
-                  max: 255.0,
-                  activeColor: Colors.red,
-                  value: r.value,
-                  onChanged: (val) => controller.updateR(val));
-            }, controller.r),
-            ObxValue((g) {
-              return Slider(
-                  min: 0.0,
-                  max: 255.0,
-                  activeColor: Colors.green,
-                  value: g.value,
-                  onChanged: (val) => controller.updateG(val));
-            }, controller.g),
-            ObxValue((b) {
-              return Slider(
-                  min: 0.0,
-                  max: 255.0,
-                  activeColor: Colors.blue,
-                  value: b.value,
-                  onChanged: (val) => controller.updateB(val));
-            }, controller.b),
-            Obx(() => SelectableText(
+        body: Obx(() => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 18.0),
+                  decoration: BoxDecoration(
+                      color: controller.color,
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(6, 6),
+                            color: Colors.black26,
+                            blurRadius: 6.0)
+                      ],
+                      borderRadius: BorderRadius.circular(12)),
+                  width: double.infinity,
+                  height: 200,
+                ),
+                Slider(
+                    min: 0.0,
+                    max: 255.0,
+                    activeColor: Colors.red,
+                    value: controller.r.value,
+                    onChanged: (val) => controller.updateR(val)),
+                Slider(
+                    min: 0.0,
+                    max: 255.0,
+                    activeColor: Colors.green,
+                    value: controller.g.value,
+                    onChanged: (val) => controller.updateG(val)),
+                Slider(
+                    min: 0.0,
+                    max: 255.0,
+                    activeColor: Colors.blue,
+                    value: controller.b.value,
+                    onChanged: (val) => controller.updateB(val)),
+                SelectableText(
                   'ColorHex: ${controller.color.toString().substring(10, 16)}',
                   textScaleFactor: 1.5,
-                ))
-          ],
-        ),
+                )
+              ],
+            )),
       ),
     );
   }
